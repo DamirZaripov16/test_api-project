@@ -3,6 +3,8 @@ class ResponseText:
     MESSAGE_USER_PASSWORD_REQUIRED = "Username and password are required fields"
     DESCRIPTION_AUTHENTICATION = "Invalid credentials"
     DESCRIPTION_AUTHENTICATION_ERROR = "Request does not contain an access token"
+    DESCRIPTION_AUTHENTICATION_SEGMENTS_ERROR = "Not enough segments"
+    DESCRIPTION_AUTHENTICATION_INVALID_TOKEN_ERROR = "Invalid token"
     ERROR_AUTHENTICATION = "Bad Request"
     ERROR_AUTHENTICATION_TEXT = "Authorization Required"
     MESSAGE_ADD_USER_INFO = "User info created successfully."
