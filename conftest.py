@@ -3,11 +3,9 @@ import logging
 import pytest
 
 from fixtures.app import StoreApp
-from fixtures.authentication.model import (
-    AuthenticationUserResponse,
-    AuthenticationUserType,
-)
-from fixtures.register.model import RegisterUser, RegisterUserResponse
+from fixtures.common_models import UserStore
+from fixtures.register.model import RegisterUser
+from fixtures.user_info.model import AddUserInfo
 
 logger = logging.getLogger("api")
 
@@ -19,6 +17,44 @@ def app(request):
     return StoreApp(url)
 
 
+@pytest.fixture
+def register_user(app) -> UserStore:
+    """
+    Register new user
+    """
+    data = RegisterUser.random()
+    res = app.register.register(data=data)
+    data = UserStore(user=data, user_uuid=res.data.uuid)
+    return data
+
+
+@pytest.fixture
+def authenticate_user(app, register_user) -> UserStore:
+    """
+    Login user
+    """
+    res = app.authenticate.authenticate(data=register_user.user)
+    token = res.data.access_token
+    header = {"Authorization": f"JWT {token}"}
+    data = UserStore(**register_user.to_dict())
+    data.header = header
+    return data
+
+
+@pytest.fixture
+def user_info(app, authenticate_user) -> UserStore:
+    """
+    Add user info
+    """
+    data = AddUserInfo.random()
+    app.user_info.add_user_info(
+        uuid=authenticate_user.user_uuid, data=data, header=authenticate_user.header
+    )
+    data_user = UserStore(**authenticate_user.to_dict())
+    data_user.user_info = data
+    return data_user
+
+
 def pytest_addoption(parser):
     parser.addoption(
         "--api-url",
@@ -26,16 +62,3 @@ def pytest_addoption(parser):
         help="enter api url",
         default="https://stores-tests-api.herokuapp.com",
     ),
-
-
-@pytest.fixture
-def authenticate_user(app):
-    data = RegisterUser.random()
-    res_register = app.register.register(data=data, type_response=RegisterUserResponse)
-    res_authenticate = app.authenticate.authenticate(
-        data=data, type_response=AuthenticationUserResponse
-    )
-    token = res_authenticate.data.access_token
-    header = {"Authorization": f"JWT {token}"}
-    user_uuid = res_register.data.uuid
-    return AuthenticationUserType(header, user_uuid)

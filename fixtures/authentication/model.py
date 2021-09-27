@@ -19,9 +19,3 @@ class AuthenticationUser(BaseClass):
 @attr.s
 class AuthenticationUserResponse:
     access_token: str = attr.ib()
-
-
-@attr.s
-class AuthenticationUserType:
-    header: dict = attr.ib()
-    uuid: int = attr.ib()

@@ -14,10 +14,10 @@ class Address:
 
 
 @attr.s
-class UserInfo(BaseClass):
+class AddUserInfo(BaseClass):
     phone: str = attr.ib(default=None)
     email: str = attr.ib(default=None)
-    address: Address = attr.ib(default=None)
+    address: Address() = attr.ib(default=None)
 
     @staticmethod
     def random():
@@ -26,10 +26,15 @@ class UserInfo(BaseClass):
             street=fake.street_name(),
             home_number=fake.building_number(),
         )
-        return UserInfo(phone=fake.phone_number(), email=fake.email(), address=address)
+        return AddUserInfo(
+            phone=fake.phone_number(), email=fake.email(), address=address
+        )
 
 
 @attr.s
-class RegisterUserResponse:
-    message: str = attr.ib()
-    uuid: int = attr.ib()
+class GetUserInfoResponse:
+    phone: str = attr.ib(default=None)
+    email: str = attr.ib(default=None)
+    userID: int = attr.ib(default=None)
+    street: str = attr.ib(default=None)
+    city: str = attr.ib(default=None)
