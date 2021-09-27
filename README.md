@@ -1,3 +1,4 @@
+[![tests](https://github.com/DamirZaripov16/test_api-project/actions/workflows/tests.yml/badge.svg)](https://github.com/DamirZaripov16/test_api-project/actions/workflows/tests.yml)
 # Python api tests
 
 This is a tutorial project that shows how to implement api tests in Python
