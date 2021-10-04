@@ -1,3 +1,5 @@
+from typing import List
+
 from faker import Faker
 import attr
 
@@ -26,3 +28,8 @@ class StoreItemResponse:
     name: str = attr.ib()
     price: int = attr.ib()
     itemID: int = attr.ib()
+
+
+@attr.s
+class GetAllStoreItemResponse:
+    items: List[str] = attr.ib()

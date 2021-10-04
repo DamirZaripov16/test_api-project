@@ -1,6 +1,10 @@
 from requests import Response
 
-from fixtures.store_item.model import StoreItemResponse, AddStoreItem
+from fixtures.store_item.model import (
+    StoreItemResponse,
+    AddStoreItem,
+    GetAllStoreItemResponse,
+)
 from fixtures.validator import Validator
 from common.deco import logging as log
 
@@ -12,6 +16,7 @@ class StoreItem(Validator):
     POST_STORE_ITEM = "/item/{}"
     PUT_STORE_ITEM = "/item/{}"
     GET_STORE_ITEM = "/item/{}"
+    GET_ALL_STORE_ITEMS = "/items"
 
     @log("Add store item")
     def add_store_item(
@@ -61,6 +66,20 @@ class StoreItem(Validator):
         response = self.app.client.request(
             method="GET",
             url=f"{self.app.url}{self.GET_STORE_ITEM.format(name)}",
+            headers=header,
+        )
+        return self.structure(response, type_response=type_response)
+
+    @log("Get all store items")
+    def get_all_store_items(
+        self, header=None, type_response=GetAllStoreItemResponse
+    ) -> Response:
+        """
+        https://app.swaggerhub.com/apis-docs/berpress/flask-rest-api/1.0.0#/storeItem/storeItemGet # noqa
+        """
+        response = self.app.client.request(
+            method="GET",
+            url=f"{self.app.url}{self.GET_ALL_STORE_ITEMS}",
             headers=header,
         )
         return self.structure(response, type_response=type_response)

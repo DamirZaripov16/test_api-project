@@ -15,6 +15,18 @@ class TestGetStoreItem:
         assert res.status_code == 200, "Check status code"
         assert res.data.name == store_item.store_item
 
+    def test_get_all_store_items(self, app, store_item):
+        """
+        1. Try to get all the store items
+        2. Check that status code is 201
+        3. Check response
+        """
+        res = app.store_item.get_all_store_items(
+            header=store_item.header,
+        )
+        assert res.status_code == 200, "Check status code"
+        assert res.data is not False
+
     def test_store_item_info_wo_auth_header(self, app, store_item):
         """
         1. Try to get store item wo auth header
