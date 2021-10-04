@@ -2,6 +2,7 @@ from fixtures.authentication.api import Authenticate
 from fixtures.register.api import Register
 from fixtures.requests import Client
 from fixtures.store.api import Store
+from fixtures.store_item.api import StoreItem
 from fixtures.user_info.api import UserInfo
 
 
@@ -13,3 +14,4 @@ class StoreApp:
         self.authenticate = Authenticate(self)
         self.user_info = UserInfo(self)
         self.store = Store(self)
+        self.store_item = StoreItem(self)
