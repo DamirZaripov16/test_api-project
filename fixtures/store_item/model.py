@@ -17,7 +17,7 @@ class AddStoreItem(BaseClass):
     @staticmethod
     def random():
         return AddStoreItem(
-            name=fake.word().lower(),
+            name=fake.email().lower(),
             price=fake.random_digit(),
             store_id=fake.random_digit(),
         )

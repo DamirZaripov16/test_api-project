@@ -13,7 +13,7 @@ class Store:
 
     @staticmethod
     def random():
-        return Store(name=fake.word().lower())
+        return Store(name=fake.email().lower())
 
 
 @attr.s
