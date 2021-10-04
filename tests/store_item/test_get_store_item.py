@@ -1,3 +1,4 @@
+import pytest
 from fixtures.common_models import AuthenticateUserInvalidResponse, MessageResponse
 from fixtures.constants import ResponseText
 
@@ -18,7 +19,7 @@ class TestGetStoreItem:
     def test_get_all_store_items(self, app, store_item):
         """
         1. Try to get all the store items
-        2. Check that status code is 201
+        2. Check that status code is 200
         3. Check response
         """
         res = app.store_item.get_all_store_items(
@@ -26,6 +27,22 @@ class TestGetStoreItem:
         )
         assert res.status_code == 200, "Check status code"
         assert res.data is not False
+
+    @pytest.mark.xfail
+    def test_get_all_store_items_wo_auth_header(self, app, store_item):
+        """
+        1. Try to get all the store items wo auth header
+        2. Check that status code is 401
+        3. Check response
+        """
+        res = app.store_item.get_all_store_items(
+            header=None,
+            type_response=AuthenticateUserInvalidResponse,
+        )
+        assert res.status_code == 401, "Check status code"
+        assert res.data.description == ResponseText.DESCRIPTION_AUTHENTICATION_ERROR
+        assert res.data.error == ResponseText.ERROR_AUTHENTICATION_TEXT
+        assert res.data.status_code == 401, "Check status code"
 
     def test_store_item_info_wo_auth_header(self, app, store_item):
         """
