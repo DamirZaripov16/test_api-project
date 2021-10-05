@@ -89,7 +89,7 @@ def user_balance(app, store_item) -> UserStore:
     """
     data = AddUserBalance.random()
     app.user_balance.add_user_balance(
-        uuid=authenticate_user.user_uuid, data=data, header=store_item.header
+        uuid=store_item.user_uuid, data=data, header=store_item.header
     )
     data_user_balance = UserStore(**store_item.to_dict())
     data_user_balance.user_balance = data

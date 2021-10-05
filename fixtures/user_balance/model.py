@@ -21,3 +21,9 @@ class AddUserBalance(BaseClass):
 class UserBalanceResponse:
     message: str = attr.ib()
     balance: int = attr.ib()
+
+
+@attr.s
+class GetUserBalanceResponse:
+    message: str = attr.ib()
+    balance: int = attr.ib()

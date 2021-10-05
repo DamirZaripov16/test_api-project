@@ -17,4 +17,6 @@ class ResponseText:
     MESSAGE_STORE_NOT_FOUND = "Store not found"
     MESSAGE_STORE_ITEM_NOT_FOUND = "Item not found"
     MESSAGE_STORE_ITEM_EXISTS = "An item with name '{}' already exists."
-    MESSAGE_ADDED_USER_BALANCE = "User balance has been updated. New balance is"
+    MESSAGE_ADDED_USER_BALANCE = "User balance has been updated. New balance is {}"
+    MESSAGE_USER_BALANCE_INFO = "User balance is {}"
+    MESSAGE_USER_BALANCE_NOT_FOUND = "Balance not found. Add money for user."

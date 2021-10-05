@@ -25,7 +25,7 @@ class TestGetStoreItem:
             header=store_item.header,
         )
         assert res.status_code == 200, "Check status code"
-        assert res.data is not False
+        assert res.data is not None
 
     def test_store_item_wo_auth_header(self, app, store_item):
         """
@@ -44,7 +44,7 @@ class TestGetStoreItem:
         assert res.data.status_code == 401, "Check status code"
 
     def test_store_item_with_non_existing_item_name(
-        self, app, store_item, non_existing_item_name=1000
+        self, app, store_item, non_existing_item_name="non_existing_item_name"
     ):
         """
         1. Try to get store item with non-existing item name
