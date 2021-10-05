@@ -1,4 +1,5 @@
 from fixtures.authentication.api import Authenticate
+from fixtures.payment.api import Payment
 from fixtures.register.api import Register
 from fixtures.requests import Client
 from fixtures.store.api import Store
@@ -17,3 +18,4 @@ class StoreApp:
         self.store = Store(self)
         self.store_item = StoreItem(self)
         self.user_balance = UserBalance(self)
+        self.payment = Payment(self)

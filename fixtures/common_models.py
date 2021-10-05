@@ -19,6 +19,7 @@ class UserStore(BaseClass):
     store: str = attr.ib(default=None)
     store_item: str = attr.ib(default=None)
     user_balance: int = attr.ib(default=None)
+    payment: int = attr.ib(default=None)
 
 
 @attr.s

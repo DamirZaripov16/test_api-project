@@ -4,6 +4,7 @@ import pytest
 
 from fixtures.app import StoreApp
 from fixtures.common_models import UserStore
+from fixtures.payment.model import AddPayment
 from fixtures.register.model import RegisterUser
 from fixtures.store.model import Store
 from fixtures.store_item.model import AddStoreItem
@@ -94,6 +95,20 @@ def user_balance(app, store_item) -> UserStore:
     data_user_balance = UserStore(**store_item.to_dict())
     data_user_balance.user_balance = data
     return data_user_balance
+
+
+@pytest.fixture
+def pay(app, user_balance) -> UserStore:
+    """
+    Add payment
+    """
+    data = AddPayment.random()
+    app.payment.add_payment(
+        uid=user_balance.user_uuid, data=data, header=user_balance.header
+    )
+    data_pay = UserStore(**user_balance.to_dict())
+    data_pay.pay = data
+    return data_pay
 
 
 def pytest_addoption(parser):

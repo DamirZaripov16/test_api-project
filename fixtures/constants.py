@@ -20,3 +20,7 @@ class ResponseText:
     MESSAGE_ADDED_USER_BALANCE = "User balance has been updated. New balance is {}"
     MESSAGE_USER_BALANCE_INFO = "User balance is {}"
     MESSAGE_USER_BALANCE_NOT_FOUND = "Balance not found. Add money for user."
+    MESSAGE_PAYMENT_ADDED = "Payment was successful"
+    MESSAGE_PAYMENT_BLANK_ITEM_ID_ADDED = (
+        "{'balance': 'This field cannot be left blank!'}"
+    )
