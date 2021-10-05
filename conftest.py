@@ -7,6 +7,7 @@ from fixtures.common_models import UserStore
 from fixtures.register.model import RegisterUser
 from fixtures.store.model import Store
 from fixtures.store_item.model import AddStoreItem
+from fixtures.user_balance.model import AddUserBalance
 from fixtures.user_info.model import AddUserInfo
 
 logger = logging.getLogger("api")
@@ -79,6 +80,20 @@ def store_item(app, store) -> UserStore:
     data_store_item = UserStore(**store.to_dict())
     data_store_item.store_item = data.name
     return data_store_item
+
+
+@pytest.fixture
+def user_balance(app, store_item) -> UserStore:
+    """
+    Add user balance
+    """
+    data = AddUserBalance.random()
+    app.user_balance.add_user_balance(
+        uuid=authenticate_user.user_uuid, data=data, header=store_item.header
+    )
+    data_user_balance = UserStore(**store_item.to_dict())
+    data_user_balance.user_balance = data
+    return data_user_balance
 
 
 def pytest_addoption(parser):

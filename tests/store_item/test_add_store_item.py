@@ -80,17 +80,18 @@ class TestAddStoreItem:
         assert res.status_code == 400, "Check status code"
 
     @pytest.mark.xfail
-    def test_add_store_item_with_invalid_name(
-        self, app, store, invalid_name=random.randint(1, 1000)
-    ):
+    @pytest.mark.parametrize(
+        "name", [random.randint(1, 1000), "---", "\xbdR6\x10\x7f", True]
+    )
+    def test_add_store_item_with_invalid_name(self, app, store, name):
         """
-        1. Try to add store item with nameItem = 5
+        1. Try to add store item with invalid nameItem
         2. Check that status code is 400
         3. Check response
         """
         data = AddStoreItem.random()
         res = app.store_item.add_store_item(
-            name=invalid_name,
+            name=name,
             data=data,
             header=store.header,
             type_response=None,

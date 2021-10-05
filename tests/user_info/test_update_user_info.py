@@ -105,11 +105,8 @@ class TestUserInfo:
     def test_update_invalid_id_userinfo(self, app, user_info, uuid):
         """
         Steps.
-            1. Try to login user with valid data
-            2. Add user info
-            3. Change user data
-            4. Check that status code is 200
-            5. Check response
+            1. Try to login user with invalid data
+            2. Check that status code is 404
         """
         data = AddUserInfo.random()
         res = app.user_info.update_user_info(
