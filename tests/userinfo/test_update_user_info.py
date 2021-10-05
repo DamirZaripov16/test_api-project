@@ -17,7 +17,7 @@ class TestUserInfo:
             uuid=user_info.user_uuid, data=data, header=user_info.header
         )
         assert res.status_code == 200, "Check status code"
-        assert res.data.message == ResponseText.MESSAGE_UPDATE_USER_INFO
+        assert res.data.message == ResponseText.MESSAGE_UPDATED_USER_INFO
 
     def test_update_user_info_wo_authentication_header(self, app, user_info):
         """
@@ -69,7 +69,7 @@ class TestUserInfo:
             uuid=user_info.user_uuid,
             data=data,
             header=None,
-            type_response=AuthenticateUserInvalidResponse
+            type_response=AuthenticateUserInvalidResponse,
         )
         assert res.status_code == 401, "Check status code"
         assert res.data.description == ResponseText.DESCRIPTION_AUTHENTICATION_ERROR
@@ -89,11 +89,17 @@ class TestUserInfo:
             uuid=user_info.user_uuid,
             data=data,
             header={"Authorization": "JWT 895241"},
-            type_response=AuthenticateUserInvalidResponse
+            type_response=AuthenticateUserInvalidResponse,
         )
         assert res.status_code == 401
-        assert res.data.description == ResponseText.DESCRIPTION_AUTHENTICATION_SEGMENTS_ERROR
-        assert res.data.error == ResponseText.DESCRIPTION_AUTHENTICATION_INVALID_TOKEN_ERROR
+        assert (
+            res.data.description
+            == ResponseText.DESCRIPTION_AUTHENTICATION_SEGMENTS_ERROR
+        )
+        assert (
+            res.data.error
+            == ResponseText.DESCRIPTION_AUTHENTICATION_INVALID_TOKEN_ERROR
+        )
 
     @pytest.mark.parametrize("uuid", ["invalid_id", "!!!", -35, True])
     def test_update_invalid_id_userinfo(self, app, user_info, uuid):

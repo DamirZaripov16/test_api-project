@@ -13,7 +13,7 @@ class TestDeleteUserInfo:
             uuid=user_info.user_uuid, header=user_info.header
         )
         assert res.status_code == 200, "Check status code"
-        assert res.data.message == ResponseText.MESSAGE_DELETE_USER_INFO
+        assert res.data.message == ResponseText.MESSAGE_DELETED_USER_INFO
 
     def test_delete_user_info_wo_authentication_header(self, app, user_info):
         """

@@ -6,7 +6,7 @@ from fixtures.store_item.model import AddStoreItem
 
 
 class TestUpdateStoreItem:
-    def test_update_store_item(self, app, user_info):
+    def test_update_store_item(self, app, store):
         """
         1. Try to update store item
         2. Check that status code is 200
@@ -14,12 +14,12 @@ class TestUpdateStoreItem:
         """
         data = AddStoreItem.random()
         res = app.store_item.update_store_item(
-            data.name, data=data, header=user_info.header
+            data.name, data=data, header=store.header
         )
         assert res.status_code == 200, "Check status code"
         assert res.data.name == data.name
 
-    def test_update_store_item_wo_auth_header(self, app, user_info):
+    def test_update_store_item_wo_auth_header(self, app, store):
         """
         1. Try to update store item wo auth header
         2. Check that status code is 401
@@ -39,7 +39,7 @@ class TestUpdateStoreItem:
 
     @pytest.mark.xfail
     @pytest.mark.parametrize("field", ["price", "store_id"])
-    def test_update_store_item_wo_data(self, app, user_info, field):
+    def test_update_store_item_wo_data(self, app, store, field):
         """
         1. Try to update store item wo data
         2. Check that status code is 400
@@ -50,7 +50,7 @@ class TestUpdateStoreItem:
         res = app.store_item.update_store_item(
             name=data.name,
             data=data,
-            header=user_info.header,
+            header=store.header,
             type_response=None,
         )
         assert res.status_code == 400, "Check status code"

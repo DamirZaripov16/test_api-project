@@ -70,13 +70,13 @@ def store(app, user_info) -> UserStore:
 
 
 @pytest.fixture
-def store_item(app, user_info) -> UserStore:
+def store_item(app, store) -> UserStore:
     """
     Add store item
     """
     data = AddStoreItem.random()
-    app.store_item.add_store_item(data.name, data=data, header=user_info.header)
-    data_store_item = UserStore(**user_info.to_dict())
+    app.store_item.add_store_item(data.name, data=data, header=store.header)
+    data_store_item = UserStore(**store.to_dict())
     data_store_item.store_item = data.name
     return data_store_item
 

@@ -15,7 +15,7 @@ class TestAddUserInfo:
             uuid=authenticate_user.user_uuid, data=data, header=authenticate_user.header
         )
         assert res.status_code == 200, "Check status code"
-        assert res.data.message == ResponseText.MESSAGE_ADD_USER_INFO
+        assert res.data.message == ResponseText.MESSAGE_ADDED_USER_INFO
 
     def test_add_user_info_wo_authentication_header(self, app, authenticate_user):
         """

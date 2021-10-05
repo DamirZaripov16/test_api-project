@@ -32,9 +32,9 @@ class TestAddStore:
         assert res.data.error == ResponseText.ERROR_AUTHENTICATION_TEXT
         assert res.data.status_code == 401, "Check status code"
 
-    def test_double_add_store(self, app, user_info):
+    def test_add_the_same_store(self, app, user_info):
         """
-        1. Try to double add with same data
+        1. Try to add store with the same data
         2. Check that status code is 400
         3. Check response
         """
@@ -45,4 +45,4 @@ class TestAddStore:
             data.name, header=user_info.header, type_response=MessageResponse
         )
         assert res_2.status_code == 400, "Check status code"
-        assert res_2.data.message == ResponseText.MESSAGE_STORE_EXIST.format(data.name)
+        assert res_2.data.message == ResponseText.MESSAGE_STORE_EXISTS.format(data.name)
