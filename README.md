@@ -4,9 +4,9 @@
 ## 🧭 Navigation
 
 1. [About](#-about)<br>
-2. [Installation](installation)<br>
-3. [Instruments](instruments)<br>
-4. [Checks](checks)<br>
+2. [Installation](#%EF%B8%8F-installation)<br>
+3. [Instruments](#%EF%B8%8F-instruments)<br>
+4. [Checks](#%EF%B8%8F-checks)<br>
 5. [Allure reports](#-allure-reports)
 ## ❓ About
 In this project the api-autotests cover all the methods and responses in "Stores" Swagger.<br>
