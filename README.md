@@ -62,7 +62,8 @@ As usual I have chosen _Page Object model_ as a code design pattern to ensure fu
 | |User info update with invalid user id|
 
 
-**Initial file and detailed docstring-test cases**: ```tests\user_info\test_add_user_info.py```<br>
+**Initial file and detailed docstring-test cases**:<br> 
+```tests\user_info\test_add_user_info.py```<br>
 ```tests\user_info\test_delete_user_info.py```<br>
 ```tests\user_info\test_get_user_info.py```<br>
 ```tests\user_info\test_update_user_info.py```
@@ -74,7 +75,8 @@ As usual I have chosen _Page Object model_ as a code design pattern to ensure fu
 | |Getting the store without header|
 | |Getting the store with non-existing name|
 
-**Initial file and detailed docstring-test cases**: ```tests\store\test_add_store.py```<br>
+**Initial file and detailed docstring-test cases**:<br> 
+```tests\store\test_add_store.py```<br>
 ```tests\store\test_get_store.py```
 ### ✔**Store items**
 |Positive tests|Negative tests|
@@ -88,7 +90,8 @@ As usual I have chosen _Page Object model_ as a code design pattern to ensure fu
 | |Store item update without header|
 | |Store item update with invalid name|
 
-**Initial file and detailed docstring-test cases**: ```tests\store_item\test_add_store_item.py```<br>
+**Initial file and detailed docstring-test cases**:<br> 
+```tests\store_item\test_add_store_item.py```<br>
 ```tests\store_item\test_get_store_item.py```<br>
 ```tests\store_item\test_update_store_item.py```
 ### ✔**User balance**
@@ -100,7 +103,8 @@ As usual I have chosen _Page Object model_ as a code design pattern to ensure fu
 | |Getting the user balance without header|
 | |Getting the user balance with non-existing user|
 
-**Initial file and detailed docstring-test cases**: ```tests\user_balance\test_add_user_balance.py```<br>
+**Initial file and detailed docstring-test cases**:<br>
+```tests\user_balance\test_add_user_balance.py```<br>
 ```tests\user_balance\test_get_user_balance.py```
 ### ✔**Payment**
 |Positive tests|Negative tests|
