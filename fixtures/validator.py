@@ -2,8 +2,6 @@ import cattr
 
 from requests import Response
 
-# logger = logging.getLogger("ncps")
-
 
 class Validator:
     def structure(self, response: Response, type_response) -> Response:

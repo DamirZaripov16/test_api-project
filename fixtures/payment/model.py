@@ -19,7 +19,7 @@ class AddPayment(BaseClass):
 
 @attr.s
 class PaymentResponse:
-    message: str = attr.ib()
-    balance: float = attr.ib()
-    name: str = attr.ib()
-    price: int = attr.ib()
+    message = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    balance = attr.ib(default=None, validator=attr.validators.instance_of(float))
+    name = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    price = attr.ib(default=None, validator=attr.validators.instance_of(float))

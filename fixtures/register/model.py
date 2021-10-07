@@ -18,5 +18,5 @@ class RegisterUser(BaseClass):
 
 @attr.s
 class RegisterUserResponse:
-    message: str = attr.ib()
-    uuid: int = attr.ib()
+    message = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    uuid = attr.ib(default=None, validator=attr.validators.instance_of(int))

@@ -1,5 +1,6 @@
 import pytest
 
+
 from fixtures.common_models import AuthenticateUserInvalidResponse, MessageResponse
 from fixtures.constants import ResponseText
 from fixtures.payment.model import AddPayment
@@ -38,7 +39,7 @@ class TestAddPayment:
         assert res.data.status_code == 401, "Check status code"
 
     @pytest.mark.parametrize("field", ["itemId"])
-    def test_add_user_balance_with_empty_data(self, app, user_balance, field):
+    def test_add_payment_with_empty_data(self, app, user_balance, field):
         """
         1. Try to add payment with empty data
         2. Check that status code is 400
@@ -57,7 +58,7 @@ class TestAddPayment:
 
     @pytest.mark.xfail
     @pytest.mark.parametrize("field", ["itemId"])
-    def test_add_user_balance_with_invalid_item_id(self, app, user_balance, field):
+    def test_add_payment_with_invalid_item_id(self, app, user_balance, field):
         """
         1. Try to add payment with invalid itemId
         2. Check that status code is 400

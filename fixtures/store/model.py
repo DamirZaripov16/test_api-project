@@ -18,6 +18,6 @@ class Store:
 
 @attr.s
 class StoreResponse:
-    name: str = attr.ib()
-    uuid: int = attr.ib()
-    items: List[str] = attr.ib()
+    name = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    uuid = attr.ib(default=None, validator=attr.validators.instance_of(int))
+    items = attr.ib(default=None, validator=attr.validators.instance_of(List))

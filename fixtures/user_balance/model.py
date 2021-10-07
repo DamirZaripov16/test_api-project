@@ -1,3 +1,5 @@
+import random
+
 from faker import Faker
 import attr
 
@@ -8,22 +10,22 @@ fake = Faker()
 
 @attr.s
 class AddUserBalance(BaseClass):
-    balance: int = attr.ib(default=None)
+    balance: float = attr.ib(default=None)
 
     @staticmethod
     def random():
         return AddUserBalance(
-            balance=fake.random_digit(),
+            balance=random.randint(10, 20),
         )
 
 
 @attr.s
 class UserBalanceResponse:
-    message: str = attr.ib()
-    balance: int = attr.ib()
+    message = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    balance = attr.ib(default=None, validator=attr.validators.instance_of(float))
 
 
 @attr.s
 class GetUserBalanceResponse:
-    message: str = attr.ib()
-    balance: int = attr.ib()
+    message = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    balance = attr.ib(default=None, validator=attr.validators.instance_of(float))

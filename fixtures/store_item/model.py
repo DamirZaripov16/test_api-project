@@ -25,11 +25,11 @@ class AddStoreItem(BaseClass):
 
 @attr.s
 class StoreItemResponse:
-    name: str = attr.ib()
-    price: int = attr.ib()
-    itemID: int = attr.ib()
+    name = attr.ib(default=None, validator=attr.validators.instance_of(str))
+    price = attr.ib(default=None, validator=attr.validators.instance_of(float))
+    itemID = attr.ib(default=None, validator=attr.validators.instance_of(int))
 
 
 @attr.s
 class GetAllStoreItemResponse:
-    items: List[str] = attr.ib()
+    items = attr.ib(default=None, validator=attr.validators.instance_of(List))
