@@ -31,7 +31,7 @@ class TestGetStore:
         assert res.data.error == ResponseText.ERROR_AUTHENTICATION_TEXT
         assert res.data.status_code == 401, "Check status code"
 
-    def test_get_store_with_none_exist_name(self, app, user_info):
+    def test_get_store_with_non_existing_name(self, app, user_info):
         """
         1. Try to double add with same data
         2. Check that status code is 404
